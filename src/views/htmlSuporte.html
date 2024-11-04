@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte</title>
+    <link rel="stylesheet" type="text/css" href="cssSuporte.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="tituloSuporte">Suporte</h1>
+        <div class="section">
+            <h2>Reportar Bugs</h2>
+            <textarea class="textoEnviar" id="bugReportar" placeholder="Descreva o bug encontrado..."></textarea>
+            <button class="botaoEnviar" onclick="btnFunc('bugReportar')">Enviar</button>
+        </div>
+        <div class="section">
+            <h2>Sugestão</h2>
+            <textarea class="textoEnviar" id="sugestao" placeholder="Faça sua sugestão para melhorarmos..."></textarea>
+            <button class="botaoEnviar" id="btnID" onclick="btnFunc('sugestao')">Enviar</button>
+        </div>
+        <br><br><br>
+        <div class="section">
+            <h2>Orientações de Uso</h2>
+            <p>Se você está com dificuldades para usar nosso site, confira nossas orientações abaixo para obter ajuda.
+            </p>
+            <ul>
+                <li>Verifique se você está utilizando um navegador atualizado.</li>
+                <li>Limpe o cache e os cookies do seu navegador.</li>
+                <li>Entre em contato conosco se precisar de mais assistência.</li>
+            </ul>
+        </div>
+        <script>
+            function btnFunc(textoareaID) {
+                const textoarea = document.getElementById(textoareaID);
+                if (textoarea.value.trim() === "") {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "O campo de texto não pode estar vazio.",
+                        icon: "error"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Enviado!",
+                        text: "Sua descrição foi enviada com sucesso.",
+                        icon: "success"
+                    });
+                }
+            }
+        </script>
+    </div>
+    <footer>
+        &copy; Projeto por João Pedro Marques Martins - RGM: 802.366
+    </footer>
+</body>
+</html>

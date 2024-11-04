@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema</title>
+    <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <p id="tituloPrincipal"></p>
+        <h1 class="scale" id="conteudo">
+            <a href="#tituloPrincipal" class="acao">
+                <button data-bs-target="#conteudo" class="titulos" id="cine">CINE</button>
+            </a>
+
+            <a href="./htmlLogin.html">
+                <button class="loginClass" id="btnLoginCadastro">Login</button>
+            </a>
+
+            <a href="./htmlCadastro.html">
+                <button class="cadastroClass" id="btnLoginCadastro">Cadastro</button>
+            </a><br><br>
+
+            <a href="#tituloEmCartaz" class="acao">
+                <button data-bs-target="#tituloEmCartaz" class="menu">Em Cartaz</button>
+            </a>
+
+            <a href="#escolhaAssento" class="acao">
+                <button class="menu" data-bs-target="#escolhaAssento">Ingressos</button>
+            </a>
+
+            <a href="#tituloDestaque" class="acao">
+                <button data-bs-target="#imagemDestaque" class="menu">Destaques</button>
+            </a>
+
+            <a href="#tituloEmBreve" class="acao">
+                <button data-bs-target="#tituloEmBreve" class="menu">Em Breve</button>
+            </a>
+        
+            <a href="#tituloNoticia" class="acao">
+                <button data-bs-target="#tituloNoticia" class="menu">Noticias</button>
+            </a>
+
+            <a href="./htmlSuporte.html">
+                <button class="menu" id="suporteClass">Suporte</button>
+            </a>
+           
+            <button id="botaoOcultar" onclick="ocultarTxt()">Ocultar Menu</button>
+            
+        </h1>
+        <h2>
+            <div class="noticias">
+                <p id="cinez" class="centrado">CINE</p>
+
+                <img id="imagem" src="SalaDeCine.png" alt="Imagem de início" class="vermelho">
+                <br>
+                <p id="tituloDestaque" class="centradoTitulo">FILME EM DESTAQUE</p>
+                <br>
+                <img id="imagemDestaque" src="Destaque.jpg" alt="Imagem de Destaque" class="amarelo">
+                <br>
+                <p id="tituloEmBreve" class="centradoTitulo">EM BREVE</p>
+                <br>
+                <img id="imagemEmBreve" src="emBreve.jpg" alt="Imagem em Breve" class="azul">
+                <br>
+
+                <p id="tituloEmCartaz" class="centradoTitulo">EM CARTAZ</p>
+                <div class="image-row">
+                    <img class="scale" src="imagem1.jpg" alt="Imagem 1">
+                    <img class="scale" src="imagem2.jpg" alt="Imagem 2">
+                    <img class="scale" src="imagem3.jpg" alt="Imagem 3">
+                    <img class="scale" src="imagem4.jpg" alt="Imagem 4">
+                    <img class="scale" src="imagem5.jpg" alt="Imagem 5">
+                </div>
+                <br>
+                <div class="conteiner">
+                    <div class="centradoTitulo" id="escolhaAssento">Escolha seu assento</div>
+                    <br><br>
+                    <label for="cidade">Escolha a cidade:</label>
+                    <select id="cidade">
+                        <option value="Dourados">Dourados</option>
+                        <option value="Maracaju">Maracaju</option>
+                        <option value="Campo Grande">Campo Grande</option>
+                    </select>
+                    
+                    <br><br>
+            
+                    <label for="filme">Escolha o filme:</label>
+                    <select id="filme">
+                        <option value="filme1">Garfield - O Filme</option>
+                        <option value="filme2">Jogos Vorazes - Em Chamas</option>
+                        <option value="filme3">O Preço do Amanhã</option>
+                        <option value="filme4">Vida</option>
+                        <option value="filme5">Terror nas Profundezas</option>
+                        <option value="filme6">Alvin e Os Esquilos 3</option>
+                    </select>
+            
+                    <br><br><br>
+            
+                    <div class="assento-conteiner">
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento ocupado"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento ocupado"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento ocupado"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                        <div class="assento" onclick="selecionarAssento(this)"></div>
+                    </div>
+                    
+                    <button data-bs-target="#botaoComprar" class="menu" onclick="comprar()">Comprar</button>
+                </div>
+            
+                <script>
+                    function selecionarAssento(assento) {
+                        if (!assento.classList.contains('ocupado')) {
+                            assento.classList.toggle('selecionado');
+                        }
+                    }
+            
+                    function comprar() {
+                        const assentoSelecionados = document.querySelectorAll('.assento.selecionado');
+                        if (assentoSelecionados.length > 0) {
+                            alert(`Você selecionou ${assentoSelecionados.length} assento(s) na cidade ${document.getElementById('cidade').value}.`);
+                        } else {
+                            Swal.fire({
+                                    title: "Erro!",
+                                    text: "Por favor, selecione pelo menos um assento.",
+                                    icon: "error"
+                                });
+                        }
+                    }
+                </script>
+
+                <br>
+                <p id="tituloNoticia" class="centradoTitulo">NOTICIAS DO MOMENTO</p>
+                <div class="noticias">
+                    <br>
+                    <div>
+                        Sony negocia aquisição da Paramount: novidades no mundo do cinema <p></p>
+                        <button id="btnN" onclick="btnFunc()">Ver mais</button>
+                    </div>
+                    <br>
+                    <div>
+                        Na Netflix: Este é um dos mais famosos suspenses do cinema, mas seu aclamado diretor
+                        se arrepende de ter o feito <p></p>
+                        <button id="btnN" onclick="btnFunc()">Ver mais</button>
+                    </div>
+                    <br>
+                    <div>
+                        Férias Trocadas: 5 motivos para ir ao cinema assistir o filme nacional <p></p>
+                        <button id="btnN" onclick="btnFunc()">Ver mais</button>
+                    </div>
+
+                    <script>
+                        var botao = document.getElementById('botaoOcultar');
+                        var conteudo = document.getElementById('conteudo');
+
+                        botao.addEventListener('click', function () {
+                            Swal.fire({
+                                title: "Tem certeza que deseja ocultar os botões?",
+                                text: "Você não poderá reverter esse processo!",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Ocultar mesmo assim"
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: "Você que manda!",
+                                        text: "Os botões foram ocultados.",
+                                        icon: "success"
+                                    });
+                                    conteudo.style.display = 'none';
+                                }
+                            });
+                        });
+                    </script>
+
+                    <script>
+                        function btnFunc() {
+                            window.location.href = "https://www.cnnbrasil.com.br/tudo-sobre/cinema/";
+                        }
+                    </script>
+                </div>
+        </h2>
+        </div>
+    </main>
+    <script src="./js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <footer>
+        &copy; Projeto por João Pedro Marques Martins - RGM: 802.366
+    </footer>
+</body>
+</html>

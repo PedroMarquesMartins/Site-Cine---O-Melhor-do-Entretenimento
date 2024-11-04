@@ -1,0 +1,75 @@
+body {
+    background-image: url('fundo.jpg');
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.section {
+    margin-bottom: 30px;
+    font-family:fantasy;
+}
+
+h2 {
+    color: #000000;
+}
+
+p {
+    color: #000000;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+.section {
+    border-bottom: 1px solid #e94242;
+    padding-bottom: 20px;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.textoEnviar {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+#tituloSuporte{
+    text-align: center;
+    font-family:fantasy;
+    font-size: 40px;
+}
+
+.botaoEnviar{
+    background-color: #f50202;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.botaoEnviar:hover {
+    background-color: #e90505;
+}

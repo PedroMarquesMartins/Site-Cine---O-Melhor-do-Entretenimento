@@ -1,28 +1,27 @@
 <?php
-require_once '../models/Usuario.php';
+require_once '../models/Reportes.php';
 
-class usuarioController
+class reporteController
 {
-    private $user;
+    private $reporte;
 
     public function __construct($db)
     {
-        $this->user = new Usuario($db);
+        $this->reporte = new Reporte($db);
     }
 
     public function list()
     {
-        $users = $this->user->list();
-        echo json_encode($users);
+        $reportes = $this->reporte->list();
+        echo json_encode($reportes);
     }
 
     public function create()
     {
         $data = json_decode(file_get_contents("php://input"));
-        if (isset($data->usuario) && isset($data->senha)) {
+        if (isset($data->descricaoBug) && isset($data->descricaoSugestao) && isset($data->idUsuario)) {
             try {
-                $this->user->create($data->usuario, $data->senha); //dataJSON(usuario)
-
+                $this->reporte->create($data->descricaoBug, $data->descricaoSugestao, $data->idUsuario);
                 http_response_code(201);
                 echo json_encode(["message" => "Usuário criado com sucesso."]);
             } catch (\Throwable $th) {
@@ -33,15 +32,16 @@ class usuarioController
             http_response_code(400);
             echo json_encode(["message" => "Dados incompletos."]);
         }
+        //$id, $descricaoBug, $descricaoSugestao, $idUsuario
     }
 
     public function getById($id)
     {
         if (isset($id)) {
             try {
-                $user = $this->user->getById($id);
-                if ($user) {
-                    echo json_encode($user);
+                $reporte = $this->reporte->getById($id);
+                if ($reporte) {
+                    echo json_encode($reporte);
                 } else {
                     http_response_code(404);
                     echo json_encode(["message" => "Usuário não encontrado."]);
@@ -59,9 +59,10 @@ class usuarioController
     public function update($id)
     {
         $data = json_decode(file_get_contents("php://input"));
-        if (isset($id) && isset($data->usuario) && isset($data->senha)) {
+        if (isset($id) && isset($data->descricaoBug) && isset($data->descricaoSugestao) && isset($data->idUsuario)) {
+
             try {
-                $count = $this->user->update($id, $data->usuario, $data->senha);
+                $count = $this->reporte->update($id, $data->descricaoBug, $data->descricaoSugestao, $data->idUsuario);
                 if ($count > 0) {
                     http_response_code(200);
                     echo json_encode(["message" => "Usuário atualizado com sucesso."]);
@@ -79,12 +80,13 @@ class usuarioController
         }
     }
 
+    //DELETE AQUI
+
     public function delete($id)
     {
-        $data = json_decode(file_get_contents("php://input"));
         if (isset($id)) {
             try {
-                $count = $this->user->delete($id);
+                $count = $this->reporte->delete($id);
 
                 if ($count > 0) {
                     http_response_code(200);

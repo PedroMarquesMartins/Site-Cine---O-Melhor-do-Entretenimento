@@ -12,4 +12,4 @@ Ideia do Projeto:
 
 - Tecnologias e dependências a serem utilizadas: As principais tecnologias a serem utilizadas são HTML, CSS, PHP integrado com o PHP Unit e MySQL, utilizando o composer.
 
-
+![Diagrama](https://github.com/user-attachments/assets/244e94a5-1253-472a-b750-0af49005f7d7)

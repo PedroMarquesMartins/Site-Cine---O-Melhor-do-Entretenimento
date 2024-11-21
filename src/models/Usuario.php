@@ -1,5 +1,6 @@
 <?php
-require_once '../config/db.php';
+require_once __DIR__ . '/../config/db.php';
+
 
 class Usuario
 {
@@ -8,6 +9,8 @@ class Usuario
     public function __construct($db)
     {
         $this->connection = $db;
+   
+       // $this -> create("UUser","Senhaa"); deu certo!
     }
 
     public function create($user, $senha)
@@ -32,6 +35,16 @@ class Usuario
         $sql = "SELECT * FROM USUARIO WHERE id = :id";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getByUserSenha($user,$senha)
+    {
+        $sql = "SELECT * FROM USUARIO WHERE user = :user AND senha = :senha";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':user', $user);
+        $stmt->bindParam(':senha', $senha);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }

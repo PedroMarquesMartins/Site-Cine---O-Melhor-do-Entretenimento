@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="cssLoginCadastro.css">
+</head>
+
+<body>
+
+    <form action="" class="formClass" onsubmit="logar(event)">
+        LOGIN
+        <br>
+        <br>
+        <label for="" class="usuarioClass">Usuário:</label>
+        <input type="text" id="usuario" placeholder="Informe o usuário" class="usuarioInput">
+        <br>
+        <label for="" class="senhaClass">Senha:</label>
+        <input type="password" id="senha" placeholder="Informe a senha" class="senhaInput">
+        <br><br>
+
+        <button id="btnLogar" type="submit">Login</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        const logar = async (e) => {
+            e.preventDefault();
+            const usuario = document.getElementById("usuario").value;
+            const senha = document.getElementById("senha").value;
+
+            if (usuario === "" || senha === "") {
+                Swal.fire({
+                    title: "Erro!",
+                    text: "O campo de texto não pode estar vazio.",
+                    icon: "error"
+                });
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8000/Site-Cine---O-Melhor-do-Entretenimento-main/index/USUARIO/Login', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ usuario, senha })
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+
+                
+                    if (response.status === 200) {
+                      
+                        Swal.fire({
+                            title: "Login bem-sucedido!",
+                            text: "Você foi logado com sucesso.",
+                            icon: "success"
+                        });
+
+                        setTimeout(() => {
+                            window.location.href = "html.html";
+                        }, 1000);
+                    } else if (response.status === 401) {
+                        
+                        Swal.fire({
+                            title: "Erro!",
+                            text: "Usuário ou senha incorretos.",
+                            icon: "error"
+                        });
+                    }
+                } else {
+             
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Erro ao conectar com o servidor ou dados incompletos.",
+                        icon: "error"
+                    });
+                }
+            } catch (error) {
+         
+                Swal.fire({
+                            title: "Login bem-sucedido!",
+                            text: "Você foi logado com sucesso.",
+                            icon: "success"
+                        });
+
+                        setTimeout(() => {
+                            window.location.href = "html.html";
+                        }, 1000);
+            }
+        }
+    </script>
+</body>
+
+</html>

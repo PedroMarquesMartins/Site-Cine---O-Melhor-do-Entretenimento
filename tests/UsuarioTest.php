@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-require_once __DIR__ . '/../src/Usuario.php';
+require_once __DIR__ . '/../src/models/Usuario.php';
 
 class UsuarioTest extends TestCase
 {
@@ -10,10 +10,11 @@ class UsuarioTest extends TestCase
 
     protected function setUp(): void
     {
+        echo("Teste rodando...");
         $this->connection = new PDO('mysql:host=127.0.0.1;dbname=api_db', 'root', 'password');
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $this->connection->exec("TRUNCATE TABLE USUARIO");
+       $this->connection->exec("TRUNCATE TABLE USUARIO");
 
         $this->usuario = new Usuario($this->connection);
     }

@@ -1,0 +1,8 @@
+Para rodar testes individualmente:
+
+.\vendor\bin\phpunit --testdox tests/ReporteTest.php
+.\vendor\bin\phpunit --testdox tests/UsuarioTest.php
+
+Para rodar todos os testes de uma vez:
+
+.\vendor\bin\phpunit

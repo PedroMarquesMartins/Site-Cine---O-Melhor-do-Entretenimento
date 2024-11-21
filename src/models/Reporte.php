@@ -1,5 +1,5 @@
 <?php
-require_once '../config/db.php';
+require_once __DIR__ . '/../config/db.php';
 
 class Reporte
 {
@@ -10,19 +10,19 @@ class Reporte
         $this->connection = $db;
     }
 
-    public function create($descricaoBug, $descricaoSugestao, $idUsuario)
+    public function create($descricaoBug, $descricaoSugestao, $usuarioID)
     {
-        $sql = "INSERT INTO REPORTES (descricaoBug, descricaoSugestao, idUsuario) VALUES (:descricaoBug, :descricaoSugestao, :idUsuario)";
+        $sql = "INSERT INTO REPORTE (descricaoBug, descricaoSugestao, usuarioID) VALUES (:descricaoBug, :descricaoSugestao, :usuarioID)";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':descricaoBug', $descricaoBug);
         $stmt->bindParam(':descricaoSugestao', $descricaoSugestao);
-        $stmt->bindParam(':idUsuario', $idUsuario);
+        $stmt->bindParam(':usuarioID', $usuarioID);
         return $stmt->execute();
     }
 
     public function list()
     {
-        $sql = "SELECT * FROM REPORTES";
+        $sql = "SELECT * FROM REPORTE";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -30,28 +30,28 @@ class Reporte
 
     public function getById($id)
     {
-        $sql = "SELECT * FROM REPORTES WHERE id = :id";
+        $sql = "SELECT * FROM REPORTE WHERE id = :id";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function update($id, $descricaoBug, $descricaoSugestao, $idUsuario)
+    public function update($id, $descricaoBug, $descricaoSugestao, $usuarioID)
     {
-        $sql = "UPDATE REPORTES SET descricaoBug = :descricaoBug, descricaoSugestao = :descricaoSugestao, idUsuario = :idUsuario WHERE id = :id";
+        $sql = "UPDATE REPORTE SET descricaoBug = :descricaoBug, descricaoSugestao = :descricaoSugestao, usuarioID = :usuarioID WHERE id = :id";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':descricaoBug', $descricaoBug);
         $stmt->bindParam(':descricaoSugestao', $descricaoSugestao);
-        $stmt->bindParam(':idUsuario', $idUsuario);
+        $stmt->bindParam(':usuarioID', $usuarioID);
         $stmt->execute();
         return $stmt->rowCount();
     }
 
     public function delete($id)
     {
-        $sql = "DELETE FROM REPORTES WHERE id = :id";
+        $sql = "DELETE FROM REPORTE WHERE id = :id";
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();

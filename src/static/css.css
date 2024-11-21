@@ -1,42 +1,39 @@
-body{
-    background-image: url('fundo.jpg');
+
+body {
+    background-color: #333; 
+    background-image: url('fundo3.jpg');
     background-size: cover;
 }
 
-h1{
-    background-image: url('fundo.jpg');
+h1 {
     justify-content: center;
     border: 2px solid rgb(255, 0, 0);
     color: rgb(255, 0, 0);
-  
     top: 0;
     right: 0;
     left: 0;
     bottom: 1000;
 }
 
-.grandeClass{
+.grandeClass {
     padding: 250px;
 }
 
-img{
+img {
     display: block;
     margin: 0 auto;
     border: 5px solid transparent;
 }
 
-img.vermelho
-{
+img.vermelho {
     border-color: red;
 }
 
-img.amarelo
-{
-    border-color:yellow;
+img.amarelo {
+    border-color: yellow;
 }
 
-img.azul
-{
+img.azul {
     border-color: rgb(255, 0, 0);
 }
 
@@ -47,25 +44,25 @@ img.azul
     text-align: center;
 }
 
-.noticias{
+.noticias {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     justify-content: center;
-    border:10px solid rgb(223, 0, 0);
+    border: 10px solid rgb(223, 0, 0);
     color: rgb(0, 0, 0);
     flex-direction: column;
-    padding: 15px 20px; 
-    border-radius: 10px; 
+    padding: 15px 20px;
+    border-radius: 10px;
 }
 
 #btnN {
-    background-color: #4CAF50; 
-    color: white; 
-    padding: 10px 20px; 
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px; 
+    border-radius: 5px;
     cursor: pointer;
     flex-direction: column;
     width: 30;
@@ -75,67 +72,66 @@ img.azul
     background-color: #45a049;
 }
 
-a{
+a {
     text-decoration: none;
     scroll-behavior: smooth;
 }
 
-.centradoTitulo{
+.centradoTitulo {
     text-align: center;
-    font-family:fantasy;
+    font-family: fantasy;
     font-size: 40px;
 }
 
-#btnLoginCadastro{
-    background-color: #ff2e2e; 
-    color: rgb(255, 255, 255); 
-    padding: 15px 25px; 
+#btnLoginCadastro {
+    background-color: #ff2e2e;
+    color: rgb(255, 255, 255);
+    padding: 15px 25px;
     border: none;
-    border-radius: 10px; 
+    border-radius: 10px;
     cursor: pointer;
-    float:right;
+    float: right;
 }
 
-.menu{
-    background-color: #ff3939; 
-    color: white; 
-    padding: 15px 25px; 
+.menu {
+    background-color: #ff3939;
+    color: white;
+    padding: 15px 25px;
     border: none;
-    border-radius: 10px; 
-    cursor: pointer; 
+    border-radius: 10px;
+    cursor: pointer;
     font-size: 20px;
 }
 
-.menu:hover{
+.menu:hover {
     background-color: #ff5a5a;
 }
 
-#cine{
-    background-color: #ff0000; 
-    color: white; 
-    padding: 35px 45px; 
+#cine {
+    background-color: #ff3f3f;
+    color: white;
+    padding: 35px 45px;
     border: none;
-    border-radius: 30px; 
-    cursor: pointer; 
-    font-family:fantasy;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: fantasy;
     font-size: 40px;
 }
 
-#cinez{
+#cinez {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 54px;
-
     justify-content: center;
     border: 2px solid rgb(255, 0, 0);
     color: rgb(255, 0, 0);
 }
 
-#imagem{
+#imagem {
     width: 100%;
     scroll-snap-align: center;
 }
 
-#imagemDestaque{
+#imagemDestaque {
     width: 100%;
     scroll-snap-align: center;
 }
@@ -143,12 +139,12 @@ a{
 .scale {
     transform: scale(0.9);
     transition: transform 0.5s ease;
-    background-color: #ff3939; 
-    color: white; 
-    padding: 5px 10px; 
+    background-color: #ff0000;
+    color: white;
+    padding: 5px 10px;
     border: none;
-    border-radius: 10px; 
-    cursor: pointer; 
+    border-radius: 10px;
+    cursor: pointer;
     font-size: 10px;
 }
 
@@ -156,22 +152,22 @@ a{
     transform: scale(1);
 }
 
-#botaoOcultar{
-    background-color: #ff3939; 
-    color: white; 
-    padding: 10px 20px; 
+#botaoOcultar {
+    background-color: #ff5a5a;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 8px; 
+    border-radius: 8px;
     cursor: pointer;
-    float:right;
+    float: right;
 }
 
-.botaoOcultar:hover{
-    background-color: #ff5a5a;
+.botaoOcultar:hover {
+    background-color: #ff0000;
 }
 
-#btnLoginCadastro:hover{
-    background-color: #ff5a5a;
+#btnLoginCadastro:hover {
+    background-color: #ff0000;
 }
 
 .image-row {
@@ -181,8 +177,8 @@ a{
     gap: 8px;
     margin-bottom: 20px;
 }
+
 .image-row img {
-    
     object-fit: cover;
 }
 
@@ -190,7 +186,8 @@ a{
     text-align: center;
     margin: 20px;
 }
-.assento{
+
+.assento {
     width: 30px;
     height: 30px;
     margin: 5px;
@@ -198,14 +195,17 @@ a{
     border: 1px solid #999;
     cursor: pointer;
 }
-.assento.selecionado{
+
+.assento.selecionado {
     background-color: #ff2003;
 }
-.assento.ocupado{
+
+.assento.ocupado {
     background-color: #444;
     cursor: not-allowed;
 }
-.assento-conteiner{
+
+.assento-conteiner {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 10px;

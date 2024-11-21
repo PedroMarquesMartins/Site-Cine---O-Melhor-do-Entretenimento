@@ -25,18 +25,23 @@
             </div>
             <br><br><br>
             <div class="section">
-
+                <h2>Meus Reportes</h2>
+                <button type="button" class="botaoListar" onclick="adicionarTabela()">Listar Reportes</button>
                 <ul class="lista">
-
                 </ul>
-
                 <br><br>
                 <div class="section">
                     <h2>Excluir Relatório</h2>
-                    <input type="number" id="deleteID" placeholder="Informe o ID do relatório a ser excluído">
+                    <input type="number" id="deleteID" placeholder="ID a excluir">
                     <button type="button" class="botaoExcluir" onclick="deletarRelatorio()">Excluir</button>
                 </div>
-
+                <div class="section">
+                    <h2>Atualizar Relatório</h2>
+                    <input type="number" id="updateID" placeholder="ID do relatório a editar">
+                    <textarea id="updateBug" placeholder="Nova descrição do bug"></textarea>
+                    <textarea id="updateSugestao" placeholder="Nova sugestão"></textarea>
+                    <button type="button" class="botaoAtualizar" onclick="atualizarRelatorio()">Atualizar</button>
+                </div>
                 <h2>Orientações de Uso</h2>
                 <p>Se você está com dificuldades para usar nosso site, confira nossas orientações abaixo para obter
                     ajuda.</p>
@@ -45,19 +50,67 @@
                     <li>Limpe o cache e os cookies do seu navegador.</li>
                     <li>Entre em contato conosco se precisar de mais assistência.</li>
                 </ul>
-
             </div>
         </div>
     </form>
 
     <script>
+async function atualizarRelatorio() {
+    const id = document.getElementById("updateID").value;
+    const descricaoBug = document.getElementById("updateBug").value;
+    const descricaoSugestao = document.getElementById("updateSugestao").value;
+    const usuarioID = 10;
+
+    if (!id || !descricaoBug || !descricaoSugestao) {
+        Swal.fire({
+            title: "Erro!",
+            text: "Todos os campos são obrigatórios.",
+            icon: "error"
+        });
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:8000/Site-Cine---O-Melhor-do-Entretenimento-main/index/REPORTE/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id,descricaoBug,descricaoSugestao,usuarioID})
+        });
+
+        if (response.ok) {
+            Swal.fire({
+                title: "Atualizado!",
+                text: "O relatório foi atualizado com sucesso.",
+                icon: "success"
+            });
+            setTimeout(() => {
+                window.location.href = "html.html";
+            }, 1000);
+        } else {
+            Swal.fire({
+                title: "Erro!",
+                text: "Não foi possível atualizar o relatório. Verifique o ID e tente novamente.",
+                icon: "error"
+            });
+        }
+    } catch (error) {
+        Swal.fire({
+            title: "Erro!",
+            text: "Não foi possível conectar ao servidor.",
+            icon: "error"
+        });
+    }
+}
+
         const enviar = async (e) => {
             e.preventDefault();
             const descricaoBug = document.getElementById("bugReportar").value;
             const descricaoSugestao = document.getElementById("sugestao").value;
-            var usuarioID = 10;  // Valor de teste
+            var usuarioID = 1; 
 
-            if (descricaoBug == "" || descricaoSugestao == "") {
+            if (descricaoBug == "" || descricaoSugestao == ""){
                 Swal.fire({
                     title: "Erro!",
                     text: "O campo de texto não pode estar vazio.",
@@ -65,8 +118,7 @@
                 });
                 return;
             }
-
-            try {
+            try{
                 const response = await fetch('http://localhost:8000/Site-Cine---O-Melhor-do-Entretenimento-main/index/REPORTE', {
                     method: 'POST',
                     headers: {
@@ -74,74 +126,61 @@
                     },
                     body: JSON.stringify({ descricaoBug, descricaoSugestao, usuarioID })
                 });
-
-                const result = await response.json();
-
                 Swal.fire({
                     title: "Enviado!",
                     text: "Sua mensagem foi enviada com sucesso.",
                     icon: "success"
                 });
-
                 setTimeout(() => {
                     window.location.href = "html.html";
                 }, 1000);
             } catch (error) {
                 Swal.fire({
-                    title: "Enviado!",
-                    text: "Sua mensagem foi enviada com sucesso.",
-                    icon: "success"
+                    title: "Erro!",
+                    text: "Não foi possível enviar sua mensagem.",
+                    icon: "error"
                 });
-
-                setTimeout(() => {
-                    window.location.href = "html.html";
-                }, 1000);
             }
         }
 
-
         async function adicionarTabela() {
-            try {
-                const response = await fetch('http://localhost:8000/Site-Cine---O-Melhor-do-Entretenimento-main/index/REPORTE', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                });
+    try {
+        const response = await fetch('http://localhost:8000/Site-Cine---O-Melhor-do-Entretenimento-main/index/REPORTE', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
 
-                if (!response.ok) {
-                    throw new Error('Erro ao carregar os dados: ' + response.statusText);
-                }
+        if (!response.ok) {
+            throw new Error('Erro ao carregar os dados: ' + response.statusText);
+        }
+        const text = await response.text();
+        console.log("Resposta do servidor (bruta):", text);
 
-                const text = await response.text();
-                const res = JSON.parse(text);
+        const jsonStartIndex = text.indexOf('[');
+        const jsonEndIndex = text.lastIndexOf(']') + 1; 
+        const jsonText = text.substring(jsonStartIndex, jsonEndIndex); 
 
-                let lista = document.querySelector('.lista');
-                res.forEach(item => {
-                    lista.innerHTML += `
+        console.log("JSON extraído:", jsonText);
+        const res = JSON.parse(jsonText);
+        console.log("Dados JSON analisados:", res);
+
+        let lista = document.querySelector('.lista');
+        res.forEach(item => {
+            lista.innerHTML += `
                 <li>ID: ${item.id}</li>
                 <li>Bug: ${item.descricaoBug}</li>
                 <li>Sugestão: ${item.descricaoSugestao}</li>
                 <li>Usuário ID: ${item.usuarioID}</li>
                 <hr>
             `;
-                });
+        });
 
-            } catch (error) {
-                console.error('Erro ao carregar reportes:', error);
-            }
-
-
-            console.log("Resposta do servidor:", text);
-
-
-
-        }
-
-        document.addEventListener("DOMContentLoaded", async function adicionarTabela() {
-            console.log("Certoooo - depuração");
-        })
-
+    }catch (error) {
+        console.error('Erro ao carregar reportes:', error);
+    }
+}
         async function deletarRelatorio() {
             const id = document.getElementById("deleteID").value;
 
@@ -192,5 +231,4 @@
         &copy;
     </footer>
 </body>
-
 </html>

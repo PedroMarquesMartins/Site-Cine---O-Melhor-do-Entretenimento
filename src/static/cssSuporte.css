@@ -1,7 +1,6 @@
 body {
-    background-image: url('fundo.jpg');
-    margin: 0;
-    padding: 0;
+    background-image: url('fundo2.jpg');
+    background-size: cover;
 }
 
 .container {
@@ -62,14 +61,16 @@ li {
 }
 
 .botaoEnviar{
-    background-color: #f50202;
-    color: #fff;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
     border: none;
-    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .botaoEnviar:hover {
-    background-color: #e90505;
+    background-color: #45a049;
 }
